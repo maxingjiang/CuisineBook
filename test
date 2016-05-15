@@ -1,0 +1,41 @@
+#!/bin/bash
+
+if [[ $# < 1 ]];then
+	echo "Usage: ${0} type[auth|register]"
+	exit
+fi
+if [[ $1 == "auth" ]];then
+	authkey="http://192.168.211.133:8081/api/user/authkey";
+	authdata="{\"tel\":\"18612304174\",\"type\":\"0\",\"userid\":\"111\"}";
+	echo `curl -d ${authdata} ${authkey}`
+fi
+
+if [[ $1 == "register" ]];then
+	register="http://192.168.211.133:8081/api/user/register";
+	data="{\"userid\":\"113\",\"password\":\"111111a\",\"nickname\":\"mxj\",\"tel\":\"19100000000\",\"key\":\"283130\",\"deviceid\":\"ssssssss\",\"email\":\"www.com\"}";
+	echo `curl -d ${data} ${register}`
+fi
+
+if [[ $1 == "login" ]];then
+        login="http://192.168.211.133:8081/api/user/login";
+        data="{\"userid\":\"112\",\"password\":\"111111aav\",\"tel\":\"19000000000\",\"deviceid\":\"ssssssss\"}";
+        echo `curl -d ${data} ${login}`
+fi
+
+if [[ $1 == "reset" ]];then
+        reset="http://192.168.211.133:8081/api/user/reset";
+        data="{\"userid\":\"111\",\"old_password\":\"111111aav\",\"old_password\":\"111111aa\"}";
+        echo `curl -d ${data} ${reset}`
+fi
+
+if [[ $1 == "logout" ]];then
+        log_out="http://192.168.211.133:8081/api/user/logout";
+        data="{\"userid\":\"112\"}";
+        echo `curl -d ${data} ${log_out}`
+fi
+
+if [[ $1 == "addgroup" ]];then
+	addgroup="http://192.168.211.133:8081/api/group/create"
+	data="{\"name\":\"111\"}";
+	echo `curl -v -d ${data} ${addgroup}`
+fi
